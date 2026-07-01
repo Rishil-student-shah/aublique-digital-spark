@@ -201,10 +201,10 @@ const Works = () => {
                 <button
                   key={cat.id}
                   onClick={() => handleCategorySelect(cat.id)}
-                  className={motion.custom(cn(
+                  className={cn(
                     "relative px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 whitespace-nowrap",
                     active ? "text-black" : "text-muted-foreground hover:text-foreground"
-                  ))}
+                  )}
                 >
                   {active && (
                     <motion.div
