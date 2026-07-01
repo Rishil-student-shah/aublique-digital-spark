@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Linkedin, CheckCircle } from "lucide-react";
 import FloatingShapes from "@/components/FloatingShapes";
 import AnimatedSection from "@/components/AnimatedSection";
-import bhumitPhoto from "@/assets/bhumit.jpg.asset.json";
-import rishilPhoto from "@/assets/rishil.jpg.asset.json";
+import bhumitPhoto from "@/assets/bhumit.jpg";
+import rishilPhoto from "@/assets/rishil.jpg";
 import Seo from "@/components/Seo";
 
 
@@ -13,14 +13,14 @@ const founders = [
     role: "Founder & CEO",
     bio: "Founder and strategist behind Aublique's vision. Bhumit leads product direction, business operations, and security strategy — setting the roadmap for resilient digital platforms and ensuring every solution is built to scale and protected against modern threats.",
     linkedin: "https://linkedin.com/in/bhumitparmar02",
-    image: bhumitPhoto.url,
+    image: bhumitPhoto,
   },
   {
     name: "Rishil Shah",
     role: "Co-Founder & COO",
     bio: "Strategist, developer, and operator driving Aublique's growth engine. Rishil leads client partnerships, engineering, brand, and go-to-market — translating business goals into structured digital roadmaps and building the systems that deliver measurable outcomes.",
     linkedin: "https://linkedin.com/in/rishil-shah-446674338",
-    image: rishilPhoto.url,
+    image: rishilPhoto,
   },
 ];
 
