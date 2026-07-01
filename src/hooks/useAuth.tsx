@@ -35,35 +35,47 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    console.log("useAuth: Initializing auth state listeners...");
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log("useAuth: onAuthStateChange event fired:", event, "hasUser:", !!session?.user);
       setSession(session);
       setUser(session?.user ?? null);
       try {
         if (session?.user) {
+          console.log("useAuth: Checking admin role for user:", session.user.id);
           await checkAdmin(session.user.id);
         } else {
           setIsAdmin(false);
         }
       } catch (err) {
-        console.error("Auth state change error:", err);
+        console.error("useAuth: Auth state change error:", err);
       } finally {
+        console.log("useAuth: Setting loading to false in onAuthStateChange");
         setLoading(false);
       }
     });
 
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      try {
-        if (session?.user) {
-          await checkAdmin(session.user.id);
+    supabase.auth.getSession()
+      .then(async ({ data: { session } }) => {
+        console.log("useAuth: getSession resolved, hasSession:", !!session);
+        setSession(session);
+        setUser(session?.user ?? null);
+        try {
+          if (session?.user) {
+            console.log("useAuth: Checking admin role for session user:", session.user.id);
+            await checkAdmin(session.user.id);
+          }
+        } catch (err) {
+          console.error("useAuth: Get session error:", err);
+        } finally {
+          console.log("useAuth: Setting loading to false in getSession");
+          setLoading(false);
         }
-      } catch (err) {
-        console.error("Get session error:", err);
-      } finally {
+      })
+      .catch((err) => {
+        console.error("useAuth: getSession rejected:", err);
         setLoading(false);
-      }
-    });
+      });
 
     return () => subscription.unsubscribe();
   }, []);
