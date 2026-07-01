@@ -21,7 +21,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkAdmin = async (userId: string) => {
     try {
-      const { data, error } = await supabase.rpc("has_role", { _user_id: userId, _role: "admin" });
+      const { data, error } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", userId)
+        .eq("role", "admin")
+        .maybeSingle();
+
       if (error) {
         console.error("Error checking admin role:", error);
         setIsAdmin(false);
@@ -91,13 +97,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       if (data.session?.user) {
         // Check admin role synchronously during login to prevent race conditions
-        const { data: hasRole, error: roleError } = await supabase.rpc("has_role", {
-          _user_id: data.session.user.id,
-          _role: "admin",
-        });
+        const { data: hasRole, error: roleError } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", data.session.user.id)
+          .eq("role", "admin")
+          .maybeSingle();
 
         if (roleError) {
-          console.error("useAuth: Admin role check RPC error during signIn:", roleError);
+          console.error("useAuth: Admin role check error during signIn:", roleError);
           await supabase.auth.signOut();
           setIsAdmin(false);
           setLoading(false);
