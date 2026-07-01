@@ -86,7 +86,7 @@ const StatCounter = ({ label, value, suffix = "", delay = 0 }: StatCardProps) =>
 const CATEGORIES = [
   { id: "all", label: "All Works" },
   { id: "web-development", label: "Web Development" },
-  { id: "mobile-apps", label: "Mobile Apps" },
+  { id: "whatsapp-automation", label: "WhatsApp Automation" },
   { id: "crm-erp", label: "CRM / ERP" },
   { id: "cyber-security", label: "Cyber Security" },
 ];
@@ -146,8 +146,8 @@ const Works = () => {
         return <Code className="w-3.5 h-3.5" />;
       case "cyber-security":
         return <Shield className="w-3.5 h-3.5" />;
-      case "mobile-apps":
-        return <Layers className="w-3.5 h-3.5" />;
+      case "whatsapp-automation":
+        return <MessageSquare className="w-3.5 h-3.5" />;
       default:
         return <Cpu className="w-3.5 h-3.5" />;
     }
@@ -272,7 +272,10 @@ const Works = () => {
                             <img
                               src={p.thumbnail}
                               alt={p.title}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              className={cn(
+                                "w-full h-full transition-all duration-700 group-hover:scale-105",
+                                p.category === "whatsapp-automation" ? "object-contain bg-black/40 p-4" : "object-cover"
+                              )}
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-muted-foreground bg-muted/60">

@@ -3,7 +3,7 @@
     "id": "hkm-chemist-ordering-bot",
     "title": "HKM Chemist - WhatsApp B2B Ordering Bot",
     "slug": "hkm-chemist-whatsapp-bot",
-    "category": "mobile-apps",
+    "category": "whatsapp-automation",
     "client_name": "Harikrupa Chemist, Maharaja Medical & Karnavati Agencies",
     "technologies": ["Python", "Django", "PostgreSQL", "WhatsApp Cloud API", "Gupshup API", "Railway"],
     "short_description": "Streamlined B2B ordering for pharmaceutical retailers directly on WhatsApp, automating manual catalog search, scheme calculations, and order creation.",

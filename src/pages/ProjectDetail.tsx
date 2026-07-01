@@ -7,6 +7,7 @@ import FloatingShapes from "@/components/FloatingShapes";
 import AnimatedSection from "@/components/AnimatedSection";
 import Seo from "@/components/Seo";
 import localProjects from "@/data/projects.json";
+import { cn } from "@/lib/utils";
 
 import {
   Zap,
@@ -443,7 +444,14 @@ const ProjectDetail = () => {
                     onClick={() => setActiveImageIndex(i)}
                     className="bg-card border border-border rounded-2xl overflow-hidden cursor-pointer shadow-md group relative aspect-video"
                   >
-                    <img src={item.url} alt={item.caption} className="w-full h-full object-cover" />
+                    <img
+                      src={item.url}
+                      alt={item.caption}
+                      className={cn(
+                        "w-full h-full transition-all duration-300",
+                        item.type === "mobile" ? "object-contain bg-black/40 p-2" : "object-cover"
+                      )}
+                    />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                       <p className="text-xs text-foreground font-medium truncate">{item.caption || "Click to zoom"}</p>
                     </div>
