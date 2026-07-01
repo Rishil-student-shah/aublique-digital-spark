@@ -1,0 +1,15 @@
+# Aublique
+
+> Digital agency building secure, scalable web, mobile, and cyber security solutions for ambitious brands. Tagline: Digital Growth. Secured.
+
+## Pages
+
+- [Home](/): Overview of Aublique's services, process, and value proposition.
+- [About](/about): Founders, philosophy, and approach to building secure digital products.
+- [Our Works](/works): Selected client projects and case studies.
+- [Contact](/contact): Get in touch to start a project.
+
+## Services
+
+- [Development & Technology](/services/web-development): Websites, web apps, mobile apps, and CRM/ERP integrations.
+- [Cyber Security](/services/cyber-security): Penetration testing, threat monitoring, compliance, and incident response.

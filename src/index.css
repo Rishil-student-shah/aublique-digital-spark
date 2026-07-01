@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 195 62% 13%;
+    --foreground: 0 0% 100%;
+
+    --card: 195 55% 16%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 195 55% 16%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 75 100% 50%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 262 100% 66%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 195 40% 20%;
+    --muted-foreground: 195 20% 65%;
+
+    --accent: 262 100% 66%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 195 30% 25%;
+    --input: 195 30% 25%;
+    --ring: 75 100% 50%;
+
+    --radius: 1.5rem;
+
+    --lime: 75 100% 50%;
+    --lime-foreground: 0 0% 0%;
+    --purple: 262 100% 66%;
+    --purple-foreground: 0 0% 100%;
+    --teal-light: 195 45% 22%;
+    --teal-lighter: 195 35% 30%;
+
+    --sidebar-background: 195 62% 10%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 75 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 195 40% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 195 30% 25%;
+    --sidebar-ring: 75 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground font-sans;
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(circle at 15% 20%, hsl(262 100% 66% / 0.18), transparent 45%),
+      radial-gradient(circle at 85% 10%, hsl(75 100% 50% / 0.12), transparent 40%),
+      radial-gradient(circle at 75% 80%, hsl(195 100% 50% / 0.16), transparent 45%),
+      radial-gradient(circle at 20% 90%, hsl(280 100% 60% / 0.15), transparent 50%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .text-lime {
+    color: hsl(var(--lime));
+  }
+
+  .bg-lime {
+    background-color: hsl(var(--lime));
+  }
+
+  .text-purple {
+    color: hsl(var(--purple));
+  }
+
+  .bg-purple {
+    background-color: hsl(var(--purple));
+  }
+
+  .bg-teal-light {
+    background-color: hsl(var(--teal-light));
+  }
+
+  .glow-lime {
+    text-shadow: 0 0 40px hsl(75 100% 50% / 0.4), 0 0 80px hsl(75 100% 50% / 0.2);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 30px hsl(262 100% 66% / 0.3), 0 0 60px hsl(262 100% 66% / 0.15);
+  }
+
+  .gradient-purple {
+    background: linear-gradient(135deg, hsl(262 100% 66%), hsl(280 100% 55%));
+  }
+
+  .border-glow-purple {
+    border-color: hsl(var(--purple));
+    box-shadow: 0 0 15px hsl(262 100% 66% / 0.3);
+  }
+
+  .lime-underline {
+    position: relative;
+  }
+
+  .lime-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: hsl(var(--lime));
+    transition: width 0.3s ease;
+  }
+
+  .lime-underline:hover::after {
+    width: 100%;
+  }
+
+  /* Liquid Glass System */
+  .glass {
+    background: linear-gradient(
+      135deg,
+      hsl(0 0% 100% / 0.08) 0%,
+      hsl(0 0% 100% / 0.02) 100%
+    );
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid hsl(0 0% 100% / 0.12);
+    box-shadow:
+      0 8px 32px hsl(195 80% 5% / 0.4),
+      inset 0 1px 0 hsl(0 0% 100% / 0.15),
+      inset 0 -1px 0 hsl(0 0% 100% / 0.05);
+  }
+
+  .glass-strong {
+    background: linear-gradient(
+      135deg,
+      hsl(0 0% 100% / 0.12) 0%,
+      hsl(0 0% 100% / 0.04) 100%
+    );
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
+    border: 1px solid hsl(0 0% 100% / 0.18);
+    box-shadow:
+      0 12px 40px hsl(195 80% 5% / 0.5),
+      inset 0 1px 0 hsl(0 0% 100% / 0.2),
+      inset 0 -1px 0 hsl(0 0% 100% / 0.08);
+  }
+
+  .glass-card {
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      hsl(195 55% 22% / 0.55) 0%,
+      hsl(195 55% 14% / 0.35) 100%
+    );
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid hsl(0 0% 100% / 0.1);
+    box-shadow:
+      0 8px 32px hsl(195 80% 5% / 0.35),
+      inset 0 1px 0 hsl(0 0% 100% / 0.12);
+    overflow: hidden;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      hsl(0 0% 100% / 0.25),
+      hsl(0 0% 100% / 0) 40%,
+      hsl(0 0% 100% / 0) 60%,
+      hsl(0 0% 100% / 0.1)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
+}
