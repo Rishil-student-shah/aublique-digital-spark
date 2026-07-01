@@ -38,16 +38,40 @@ const Contact = () => {
     }
 
     setSubmitting(true);
-    
-    // Simulate successful message submission since database is offline
-    setTimeout(() => {
-      toast({ 
-        title: "Message sent successfully!", 
-        description: "Thank you for reaching out. We will get back to you shortly." 
+    try {
+      const response = await fetch("https://formspree.io/f/mnjkgwje", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          business: form.business.trim(),
+          message: form.message.trim(),
+        }),
       });
-      setForm({ name: "", email: "", business: "", message: "" });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thank you for reaching out. We will get back to you shortly.",
+        });
+        setForm({ name: "", email: "", business: "", message: "" });
+      } else {
+        throw new Error("Failed to submit to Formspree");
+      }
+    } catch (err) {
+      console.error("Formspree submission error:", err);
+      toast({
+        title: "Submission failed",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setSubmitting(false);
-    }, 1000);
+    }
   };
 
   const infoItems = [
