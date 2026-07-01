@@ -10,7 +10,7 @@
     "full_description": "<p>HKM Chemist is a comprehensive conversational commerce system designed to automate B2B ordering for pharmaceutical retailers. Instead of placing orders through manual calls or complex ERP portals, retailers search catalog items, check stock levels, view outstanding balances, and checkout directly on WhatsApp.</p><p>The system integrates seamlessly with the client's back-office systems, verifying dealer registration, checking schemes, and generating UPI payment QR codes dynamically.</p>",
     "challenges": "<p>Managing stateful multi-step conversation flows inside the stateless WhatsApp webhook environment was a major challenge. Additionally, validating stock availability and complex scheme rules (e.g. \"Buy 10 Get 1 Free\" with partial cart upgrades) required high-performance backend calculations to avoid lag in chat replies.</p>",
     "solution": "<p>We built a robust Django-based session router that acts as a state machine for each customer phone number. Using optimized PostgreSQL queries, the system instantly matches typed queries against tens of thousands of medicines, presenting schemes and stock options in clean, numbered list replies. Out-of-stock items trigger automated notifications directly to the owner for immediate fulfillment.</p>",
-    "thumbnail": "/src/assets/hkm-chemist-whatsapp.png",
+    "thumbnail": "/assets/hkm-chemist-whatsapp.png",
     "is_featured": true,
     "completion_date": "2026-03",
     "published": true,
@@ -47,7 +47,7 @@
     "testimonial_role": "Managing Director, HKM Group",
     "gallery": [
       {
-        "url": "/src/assets/hkm-chemist-whatsapp.png",
+        "url": "/assets/hkm-chemist-whatsapp.png",
         "caption": "WhatsApp Chatbot ordering flow simulator showing product search and quantity input.",
         "type": "mobile"
       }
@@ -64,7 +64,7 @@
     "full_description": "<p>Prishva Fintech is a high-performance CRM and portal built to streamline loan lead management, tracking, and conversions. The platform connects customers, agents, brokers (partners), telecallers, and administrators under a unified multi-role dashboard.</p><p>From public EMI and SIP eligibility calculators that auto-capture leads, to secure partner portals with document vaults and audit trails, Prishva Fintech automates the entire loan origination pipeline.</p>",
     "challenges": "<p>Managing role-based access control and strict data privacy was critical: telecallers should only log notes and follow-ups, partners should only see self-submitted leads, and clients must only see their own matching lender results and documents. Keeping page loads under 1 second while performing MySQL database joins was another priority.</p>",
     "solution": "<p>We developed a custom Django role-based permission system and middleware. We built a lender matching engine that calculates matching scores based on profile parameters. All static styles were designed with a custom modular FinTech CSS framework to maximize visual consistency, performance, and cross-device responsiveness.</p>",
-    "thumbnail": "/src/assets/prishva-fintech-dashboard.png",
+    "thumbnail": "/assets/prishva-fintech-dashboard.png",
     "is_featured": true,
     "completion_date": "2026-05",
     "published": true,
@@ -101,7 +101,7 @@
     "testimonial_role": "Core Leadership Team",
     "gallery": [
       {
-        "url": "/src/assets/prishva-fintech-dashboard.png",
+        "url": "/assets/prishva-fintech-dashboard.png",
         "caption": "Administrator CRM Pipeline tracking lead statuses and loan application stages.",
         "type": "desktop"
       }
