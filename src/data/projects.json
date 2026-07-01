@@ -17,24 +17,14 @@
     "display_order": 1,
     "timeline": [
       {
-        "phase": "ERP & Schema Analysis",
+        "phase": "ERP Analysis & Session Router",
         "date": "Month 1",
-        "description": "Analyzed client ERP structures and mapped product catalog data to design optimized search indices."
+        "description": "Mapped client ERP catalog data to design search indices and developed the Django session state machine supporting persistent carts."
       },
       {
-        "phase": "Session State Router",
+        "phase": "WhatsApp Integration & Live Release",
         "date": "Month 2",
-        "description": "Developed the Django session state machine supporting persistent carts, scheme calculations, and out-of-stock prompts."
-      },
-      {
-        "phase": "WhatsApp & QR Integration",
-        "date": "Month 3",
-        "description": "Integrated Gupshup WhatsApp APIs and dynamic bank UPI QR code generators for instant checkout confirmations."
-      },
-      {
-        "phase": "UAT & Deployment",
-        "date": "Month 4",
-        "description": "Conducted retailer beta testing, resolved race conditions, and deployed live on Railway Cloud."
+        "description": "Integrated Gupshup WhatsApp APIs and bank UPI QR codes, completed retailer beta UAT testing, and deployed live on Railway Cloud."
       }
     ],
     "results": [
@@ -76,19 +66,14 @@
         "description": "Created interactive financial calculators and landing pages capturing lead parameters directly into the database."
       },
       {
-        "phase": "Multi-Role Dashboards",
+        "phase": "Multi-Role Portals & Vaults",
         "date": "Month 2",
-        "description": "Built permission-bounded portals for Customers, Partners, Telecallers, and Admins."
+        "description": "Built permission-bounded dashboards for Customers, Partners, Telecallers, and Admins alongside document vault audit logging."
       },
       {
-        "phase": "Document Vault & Audit Logs",
+        "phase": "Lender Match Engine & Launch",
         "date": "Month 3",
-        "description": "Implemented secure file upload mechanisms, customer document vaults, and upload source auditing logs."
-      },
-      {
-        "phase": "Match Engine & Launch",
-        "date": "Month 4",
-        "description": "Completed the lender match scoring engine, optimized database performance, and launched the portal."
+        "description": "Completed the lender match scoring engine, optimized MySQL database queries, and launched the live portal."
       }
     ],
     "results": [
