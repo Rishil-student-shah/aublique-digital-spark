@@ -258,7 +258,7 @@ const ProjectDetail = () => {
           ) : (
             <div className="w-full h-full bg-card" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-[4px] bg-gradient-to-t from-background via-background/25 to-black/30" />
         </motion.div>
 
         <div className="container mx-auto px-4 relative z-10">
