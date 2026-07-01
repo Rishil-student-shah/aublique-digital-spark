@@ -81,9 +81,47 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) return { error: error.message };
-    return { error: null };
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        setLoading(false);
+        return { error: error.message };
+      }
+
+      if (data.session?.user) {
+        // Check admin role synchronously during login to prevent race conditions
+        const { data: hasRole, error: roleError } = await supabase.rpc("has_role", {
+          _user_id: data.session.user.id,
+          _role: "admin",
+        });
+
+        if (roleError) {
+          console.error("useAuth: Admin role check RPC error during signIn:", roleError);
+          await supabase.auth.signOut();
+          setIsAdmin(false);
+          setLoading(false);
+          return { error: "Authentication failed. Could not verify user role." };
+        }
+
+        if (!hasRole) {
+          console.warn("useAuth: User is not an admin, signing out...");
+          await supabase.auth.signOut();
+          setIsAdmin(false);
+          setLoading(false);
+          return { error: "Access denied. You do not have administrator privileges." };
+        }
+
+        setIsAdmin(true);
+      }
+      
+      setLoading(false);
+      return { error: null };
+    } catch (err) {
+      console.error("useAuth: Exception during signIn:", err);
+      setLoading(false);
+      return { error: "An unexpected error occurred during login." };
+    }
   };
 
   const signOut = async () => {
