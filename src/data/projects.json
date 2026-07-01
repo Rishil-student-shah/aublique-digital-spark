@@ -1,0 +1,110 @@
+[
+  {
+    "id": "hkm-chemist-ordering-bot",
+    "title": "HKM Chemist - WhatsApp B2B Ordering Bot",
+    "slug": "hkm-chemist-whatsapp-bot",
+    "category": "mobile-apps",
+    "client_name": "Harikrupa Chemist, Maharaja Medical & Karnavati Agencies",
+    "technologies": ["Python", "Django", "PostgreSQL", "WhatsApp Cloud API", "Gupshup API", "Railway"],
+    "short_description": "Streamlined B2B ordering for pharmaceutical retailers directly on WhatsApp, automating manual catalog search, scheme calculations, and order creation.",
+    "full_description": "<p>HKM Chemist is a comprehensive conversational commerce system designed to automate B2B ordering for pharmaceutical retailers. Instead of placing orders through manual calls or complex ERP portals, retailers search catalog items, check stock levels, view outstanding balances, and checkout directly on WhatsApp.</p><p>The system integrates seamlessly with the client's back-office systems, verifying dealer registration, checking schemes, and generating UPI payment QR codes dynamically.</p>",
+    "challenges": "<p>Managing stateful multi-step conversation flows inside the stateless WhatsApp webhook environment was a major challenge. Additionally, validating stock availability and complex scheme rules (e.g. \"Buy 10 Get 1 Free\" with partial cart upgrades) required high-performance backend calculations to avoid lag in chat replies.</p>",
+    "solution": "<p>We built a robust Django-based session router that acts as a state machine for each customer phone number. Using optimized PostgreSQL queries, the system instantly matches typed queries against tens of thousands of medicines, presenting schemes and stock options in clean, numbered list replies. Out-of-stock items trigger automated notifications directly to the owner for immediate fulfillment.</p>",
+    "thumbnail": "/src/assets/hkm-chemist-whatsapp.png",
+    "is_featured": true,
+    "completion_date": "2026-03",
+    "published": true,
+    "display_order": 1,
+    "timeline": [
+      {
+        "phase": "ERP & Schema Analysis",
+        "date": "Month 1",
+        "description": "Analyzed client ERP structures and mapped product catalog data to design optimized search indices."
+      },
+      {
+        "phase": "Session State Router",
+        "date": "Month 2",
+        "description": "Developed the Django session state machine supporting persistent carts, scheme calculations, and out-of-stock prompts."
+      },
+      {
+        "phase": "WhatsApp & QR Integration",
+        "date": "Month 3",
+        "description": "Integrated Gupshup WhatsApp APIs and dynamic bank UPI QR code generators for instant checkout confirmations."
+      },
+      {
+        "phase": "UAT & Deployment",
+        "date": "Month 4",
+        "description": "Conducted retailer beta testing, resolved race conditions, and deployed live on Railway Cloud."
+      }
+    ],
+    "results": [
+      { "label": "Error Reduction", "value": "90%", "icon": "shield" },
+      { "label": "Faster B2B Ordering", "value": "3x", "icon": "zap" },
+      { "label": "Active Retailers Onboarded", "value": "150+", "icon": "users" }
+    ],
+    "testimonial_text": "This system revolutionized our B2B order flow. Retailers who used to call us or write orders manually are now placing 100% of their requests via WhatsApp. Manual order entry errors have dropped by 90%, and we process orders 3 times faster.",
+    "testimonial_author": "Chiral Shah",
+    "testimonial_role": "Managing Director, HKM Group",
+    "gallery": [
+      {
+        "url": "/src/assets/hkm-chemist-whatsapp.png",
+        "caption": "WhatsApp Chatbot ordering flow simulator showing product search and quantity input.",
+        "type": "mobile"
+      }
+    ]
+  },
+  {
+    "id": "prishva-fintech-crm",
+    "title": "Prishva Fintech - Multi-Role Loan CRM & Portal",
+    "slug": "prishva-fintech-crm",
+    "category": "crm-erp",
+    "client_name": "Prishva Fintech Services",
+    "technologies": ["Django", "Python 3", "MySQL", "HTML5", "Vanilla JavaScript", "Custom CSS"],
+    "short_description": "A multi-role digital financial services portal and customer relationship management (CRM) platform bridging loan eligibility calculations, public customer enquiries, internal telecaller routing, partner workflows, and administrative pipeline oversight.",
+    "full_description": "<p>Prishva Fintech is a high-performance CRM and portal built to streamline loan lead management, tracking, and conversions. The platform connects customers, agents, brokers (partners), telecallers, and administrators under a unified multi-role dashboard.</p><p>From public EMI and SIP eligibility calculators that auto-capture leads, to secure partner portals with document vaults and audit trails, Prishva Fintech automates the entire loan origination pipeline.</p>",
+    "challenges": "<p>Managing role-based access control and strict data privacy was critical: telecallers should only log notes and follow-ups, partners should only see self-submitted leads, and clients must only see their own matching lender results and documents. Keeping page loads under 1 second while performing MySQL database joins was another priority.</p>",
+    "solution": "<p>We developed a custom Django role-based permission system and middleware. We built a lender matching engine that calculates matching scores based on profile parameters. All static styles were designed with a custom modular FinTech CSS framework to maximize visual consistency, performance, and cross-device responsiveness.</p>",
+    "thumbnail": "/src/assets/prishva-fintech-dashboard.png",
+    "is_featured": true,
+    "completion_date": "2026-05",
+    "published": true,
+    "display_order": 2,
+    "timeline": [
+      {
+        "phase": "Calculators & Lead Capture",
+        "date": "Month 1",
+        "description": "Created interactive financial calculators and landing pages capturing lead parameters directly into the database."
+      },
+      {
+        "phase": "Multi-Role Dashboards",
+        "date": "Month 2",
+        "description": "Built permission-bounded portals for Customers, Partners, Telecallers, and Admins."
+      },
+      {
+        "phase": "Document Vault & Audit Logs",
+        "date": "Month 3",
+        "description": "Implemented secure file upload mechanisms, customer document vaults, and upload source auditing logs."
+      },
+      {
+        "phase": "Match Engine & Launch",
+        "date": "Month 4",
+        "description": "Completed the lender match scoring engine, optimized database performance, and launched the portal."
+      }
+    ],
+    "results": [
+      { "label": "Approval Rate Boost", "value": "45%", "icon": "trending-up" },
+      { "label": "Auto Lead Capture Time", "value": "<5s", "icon": "clock" },
+      { "label": "Operational Portals", "value": "4 Roles", "icon": "globe" }
+    ],
+    "testimonial_text": "Prishva Fintech CRM has automated our entire loan application funnel. Partners submit leads directly and upload documents to client vaults, while our internal telecallers schedule call notes. Smart lender matching has boosted approvals by 45%!",
+    "testimonial_author": "Prishva Management",
+    "testimonial_role": "Core Leadership Team",
+    "gallery": [
+      {
+        "url": "/src/assets/prishva-fintech-dashboard.png",
+        "caption": "Administrator CRM Pipeline tracking lead statuses and loan application stages.",
+        "type": "desktop"
+      }
+    ]
+  }
+]

@@ -1,21 +1,15 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Mail, Phone, MapPin, Instagram } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import aubliqueLogo from "@/assets/aublique-logo.png";
+import contactData from "@/data/contact.json";
 
 const Footer = () => {
-  const [contactInfo, setContactInfo] = useState({ email: "", phone: "", address: "" });
-
-  useEffect(() => {
-    const load = async () => {
-      const { data } = await supabase.from("contact_details").select("*").limit(1).single();
-      if (data) {
-        setContactInfo({ email: data.email || "", phone: data.phone || "", address: data.address || "" });
-      }
-    };
-    load();
-  }, []);
+  const [contactInfo] = useState({
+    email: contactData.email || "",
+    phone: contactData.phone || "",
+    address: contactData.address || "",
+  });
 
   const infoItems = [
     { icon: Mail, label: contactInfo.email },

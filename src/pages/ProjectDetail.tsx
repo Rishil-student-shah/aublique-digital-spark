@@ -5,9 +5,8 @@ import { ArrowLeft, ArrowRight, Calendar, User, Tag, ChevronLeft, ChevronRight, 
 import { Button } from "@/components/ui/button";
 import FloatingShapes from "@/components/FloatingShapes";
 import AnimatedSection from "@/components/AnimatedSection";
-import { supabase } from "@/integrations/supabase/client";
-import type { Tables } from "@/integrations/supabase/types";
 import Seo from "@/components/Seo";
+import localProjects from "@/data/projects.json";
 
 import {
   Zap,
@@ -20,7 +19,29 @@ import {
   Percent,
 } from "lucide-react";
 
-type Project = Tables<"projects">;
+interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  client_name: string;
+  technologies: string[];
+  short_description: string;
+  full_description: string;
+  challenges: string;
+  solution: string;
+  thumbnail: string;
+  is_featured: boolean;
+  completion_date: string;
+  published: boolean;
+  display_order: number;
+  timeline: Array<{ phase: string; date: string; description: string }>;
+  results: Array<{ label: string; value: string; icon: string }>;
+  testimonial_text?: string;
+  testimonial_author?: string;
+  testimonial_role?: string;
+  gallery?: Array<{ url: string; caption: string; type: string }>;
+}
 
 interface ResultMetric {
   label: string;
@@ -152,15 +173,11 @@ const ProjectDetail = () => {
       if (!slug) return;
       try {
         setLoading(true);
-        // Fetch current project
-        const { data: current, error } = await supabase
-          .from("projects")
-          .select("*")
-          .eq("slug", slug)
-          .eq("published", true)
-          .single();
+        // Load projects from local JSON
+        const allProjects = (localProjects as Project[]).filter((p) => p.published);
+        const current = allProjects.find((p) => p.slug === slug);
 
-        if (error || !current) {
+        if (!current) {
           setProject(null);
           setLoading(false);
           return;
@@ -168,30 +185,12 @@ const ProjectDetail = () => {
 
         setProject(current);
 
-        // Record page view in project_views once per session
-        const sessionKey = `viewed_project_${current.id}`;
-        if (!sessionStorage.getItem(sessionKey)) {
-          await supabase.from("project_views").insert({
-            project_id: current.id,
-            referrer: document.referrer || null,
-            user_agent: navigator.userAgent || null,
-          });
-          sessionStorage.setItem(sessionKey, "true");
-        }
-
         // Fetch sibling projects for navigation
-        const { data: siblings } = await supabase
-          .from("projects")
-          .select("*")
-          .eq("published", true)
-          .order("display_order", { ascending: true })
-          .order("created_at", { ascending: false });
-
-        if (siblings && siblings.length > 1) {
-          const index = siblings.findIndex((p) => p.id === current.id);
+        if (allProjects.length > 1) {
+          const index = allProjects.findIndex((p) => p.id === current.id);
           if (index !== -1) {
-            setPrevProject(index > 0 ? siblings[index - 1] : siblings[siblings.length - 1]);
-            setNextProject(index < siblings.length - 1 ? siblings[index + 1] : siblings[0]);
+            setPrevProject(index > 0 ? allProjects[index - 1] : allProjects[allProjects.length - 1]);
+            setNextProject(index < allProjects.length - 1 ? allProjects[index + 1] : allProjects[0]);
           }
         }
       } catch (err) {

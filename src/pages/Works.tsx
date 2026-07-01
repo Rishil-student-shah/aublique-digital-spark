@@ -5,11 +5,33 @@ import { ArrowRight, Star, Layers, Code, Shield, Cpu, MessageSquare } from "luci
 import { Button } from "@/components/ui/button";
 import FloatingShapes from "@/components/FloatingShapes";
 import AnimatedSection from "@/components/AnimatedSection";
-import { supabase } from "@/integrations/supabase/client";
-import type { Tables } from "@/integrations/supabase/types";
 import Seo from "@/components/Seo";
+import { cn } from "@/lib/utils";
+import localProjects from "@/data/projects.json";
 
-type Project = Tables<"projects">;
+interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  client_name: string;
+  technologies: string[];
+  short_description: string;
+  full_description: string;
+  challenges: string;
+  solution: string;
+  thumbnail: string;
+  is_featured: boolean;
+  completion_date: string;
+  published: boolean;
+  display_order: number;
+  timeline: Array<{ phase: string; date: string; description: string }>;
+  results: Array<{ label: string; value: string; icon: string }>;
+  testimonial_text?: string;
+  testimonial_author?: string;
+  testimonial_role?: string;
+  gallery?: Array<{ url: string; caption: string; type: string }>;
+}
 
 interface StatCardProps {
   label: string;
@@ -86,15 +108,8 @@ const Works = () => {
     const loadWorks = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from("projects")
-          .select("*")
-          .eq("published", true)
-          .order("display_order", { ascending: true })
-          .order("created_at", { ascending: false });
-
-        if (error) throw error;
-        const allProjects = data || [];
+        // Load local projects directly from imported JSON
+        const allProjects = (localProjects as Project[]).filter((p) => p.published);
         setProjects(allProjects);
         setFilteredProjects(allProjects);
 
@@ -104,8 +119,8 @@ const Works = () => {
 
         setStats({
           projectsCount: allProjects.length,
-          clientsCount: clients.size || 5, // fallback if empty
-          categoriesCount: categories.size || 4,
+          clientsCount: clients.size || 2, // fallback
+          categoriesCount: categories.size || 2,
         });
       } catch (err) {
         console.error("Error loading projects:", err);
