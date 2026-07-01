@@ -15,3 +15,8 @@ export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABL
     autoRefreshToken: true,
   }
 });
+
+// Expose globally for browser console debugging
+if (typeof window !== "undefined") {
+  (window as any).supabase = supabase;
+}
