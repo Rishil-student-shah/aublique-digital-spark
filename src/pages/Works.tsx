@@ -193,8 +193,8 @@ const Works = () => {
 
       {/* Filter Bar */}
       <section className="py-6 border-y border-border bg-card/10 backdrop-blur-sm sticky top-16 z-30">
-        <div className="container mx-auto px-4 flex justify-center overflow-x-auto scrollbar-none">
-          <div className="flex gap-2.5 p-1.5 bg-muted/30 rounded-full border border-border/80">
+        <div className="container mx-auto px-4 flex justify-start md:justify-center overflow-x-auto scrollbar-none">
+          <div className="flex gap-2.5 p-1.5 bg-muted/30 rounded-full border border-border/80 flex-nowrap w-max md:w-auto">
             {CATEGORIES.map((cat) => {
               const active = selectedCategory === cat.id;
               return (
