@@ -14,4 +14,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://aublique-digital-spark.lovable.app/sitemap.xml
+Sitemap: https://aublique.vercel.app/sitemap.xml

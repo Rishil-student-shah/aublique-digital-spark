@@ -90,7 +90,7 @@ const Contact = () => {
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           name: "Aublique",
-          url: "https://aublique-digital-spark.lovable.app/contact",
+          url: "https://aublique.vercel.app/contact",
           email: contactInfo.email || undefined,
           telephone: contactInfo.phone || undefined,
           address: contactInfo.address || undefined,

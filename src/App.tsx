@@ -14,6 +14,7 @@ import WebDevelopment from "./pages/services/WebDevelopment";
 import CyberSecurity from "./pages/services/CyberSecurity";
 import ProjectDetail from "./pages/ProjectDetail";
 import ScrollToTop from "./components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="*" element={<><Navbar /><NotFound /><Footer /></>} />
         </Routes>
       </BrowserRouter>
+      <Analytics />
     </TooltipProvider>
   </QueryClientProvider>
 );

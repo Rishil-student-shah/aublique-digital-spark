@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-const SITE_URL = "https://aublique-digital-spark.lovable.app";
+const SITE_URL = "https://aublique.vercel.app";
 
 interface SeoProps {
   title: string;
