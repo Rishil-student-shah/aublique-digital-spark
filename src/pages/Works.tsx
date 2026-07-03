@@ -113,14 +113,14 @@ const Works = () => {
         setProjects(allProjects);
         setFilteredProjects(allProjects);
 
-        // Gather unique clients and categories
+        // Gather unique clients and distinct technologies (expertises)
         const clients = new Set(allProjects.map((p) => p.client_name).filter(Boolean));
-        const categories = new Set(allProjects.map((p) => p.category).filter(Boolean));
+        const expertises = new Set(allProjects.flatMap((p) => p.technologies || []).map(t => t.trim().toLowerCase()).filter(Boolean));
 
         setStats({
           projectsCount: allProjects.length,
-          clientsCount: clients.size || 2, // fallback
-          categoriesCount: categories.size || 2,
+          clientsCount: clients.size || 2,
+          categoriesCount: expertises.size || 6,
         });
       } catch (err) {
         console.error("Error loading projects:", err);
@@ -184,9 +184,9 @@ const Works = () => {
 
           {/* Stats counters */}
           <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mt-8">
-            <StatCounter label="Projects Shipped" value={stats.projectsCount || 10} suffix="+" />
-            <StatCounter label="Global Clients" value={stats.clientsCount || 8} suffix="+" />
-            <StatCounter label="Expertises" value={stats.categoriesCount || 4} />
+            <StatCounter label="Projects Shipped" value={stats.projectsCount || 2} />
+            <StatCounter label="Clients" value={stats.clientsCount || 2} />
+            <StatCounter label="Expertises" value={stats.categoriesCount || 6} />
           </div>
         </div>
       </section>
